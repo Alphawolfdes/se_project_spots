@@ -1,0 +1,118 @@
+.profile {
+  display: flex;
+  position: relative; /* Required for absolute positioning of children */
+  padding: 34px 0 20px;
+  border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
+  min-height: 200px;
+}
+
+.profile__avatar {
+  height: 190px;
+  width: 190px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.profile__column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.profile__name {
+  margin: 0 0 12px;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
+}
+
+.profile__description {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #212121;
+  opacity: 0.7;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
+}
+
+.profile__edit-btn {
+  border: none;
+  background: transparent;
+  display: flex;
+  cursor: pointer;
+  gap: 8px;
+  align-items: center;
+  margin-top: auto;
+}
+
+.profile__add-btn {
+  margin-left: auto;
+  background: black;
+  padding: 12px 32px;
+  border: 1px solid #fff;
+  color: white;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+@media screen and (max-width: 627px) {
+  .profile {
+    flex-direction: column;
+    max-width: 288px;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  .profile__avatar {
+    height: 80px;
+    width: 80px;
+    margin-bottom: 12px;
+  }
+
+  .profile__name {
+    font-size: 20px;
+    margin: 0 0 6px;
+  }
+
+  .profile__description {
+    margin: 0 0 32px;
+  }
+
+  .profile__column {
+    margin: 0 0 20px;
+  }
+
+  .profile__add-btn {
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .profile__edit-btn {
+    position: static;
+    margin: 10px auto;
+    order: 1;
+  }
+
+  .profile__buttons {
+    flex-direction: column;
+    position: static;
+    align-items: center;
+  }
+}

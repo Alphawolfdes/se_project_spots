@@ -1,0 +1,26 @@
+.cards {
+  padding-top: 20px;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+.cards__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 413px);
+  justify-content: center;
+  gap: 40px 20px;
+}
+
+.cards__title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 627px) {
+  .cards__list {
+    grid-template-columns: repeat(auto-fit, 288px);
+  }
+}
