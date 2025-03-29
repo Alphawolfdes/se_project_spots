@@ -61,6 +61,9 @@
   align-items: center;
   margin-top: auto;
 }
+.profile__edit-btn:hover {
+  opacity: 1;
+}
 
 .profile__add-btn {
   border-radius: 8px;
@@ -75,6 +78,9 @@
   align-items: center;
   cursor: pointer;
   margin-top: auto;
+}
+.profile__add-btn:hover {
+  opacity: 1;
 }
 
 @media screen and (max-width: 627px) {
@@ -115,11 +121,5 @@
   .profile__edit-btn {
     align-self: center;
     order: 1;
-  }
-
-  .profile__buttons {
-    flex-direction: column;
-    position: static;
-    align-items: center;
   }
 }
