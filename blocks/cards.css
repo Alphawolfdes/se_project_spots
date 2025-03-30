@@ -15,12 +15,6 @@
   gap: 40px 20px;
 }
 
-.cards__title {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.2;
-}
-
 @media screen and (max-width: 627px) {
   .cards {
     padding-bottom: 20px;
