@@ -52,7 +52,7 @@ function handleAddCardSubmit(evt) {
   const imageUrl = cardImageInput.value;
   const caption = cardCaptionInput.value;
   createCard(imageUrl, caption);
-  closeModal(newPostModal);
+  newPostModal.classList.remove("modal_is-opened");
   newPostForm.reset();
 }
 newPostForm.addEventListener("submit", handleAddCardSubmit);
