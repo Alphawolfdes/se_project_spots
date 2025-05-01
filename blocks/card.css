@@ -48,6 +48,7 @@
 }
 .card__delete-button:hover {
   opacity: 0.6;
+  background-image: url(../images/delete-hover.svg);
 }
 
 .card__like-button {
@@ -71,6 +72,7 @@
 .card__like-button:hover {
   opacity: 1;
   cursor: pointer;
+  background-image: url(../images/like-hover.svg);
 }
 
 .card__like-button_active:hover {

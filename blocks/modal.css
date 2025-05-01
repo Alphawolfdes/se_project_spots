@@ -51,11 +51,11 @@
   padding: 0;
 }
 
-.modal__close_type_preview {
+.modal__close-btn_type_preview {
   top: 16px; /* Adjusted for better alignment */
   right: 16px; /* Adjusted for better alignment */
   color: #fff;
-  background-image: url(../images/CloseIcon.png);
+  background-image: url(../images/white-close-icon.svg);
 }
 
 .modal__submit-btn {
@@ -150,6 +150,7 @@
   .modal__close_type_preview {
     top: -48px;
     right: 0;
+    background-image: url(../images/white-close-icon.svg);
   }
 }
 
@@ -219,6 +220,7 @@
     padding: 0;
     max-width: none;
     width: auto;
+    background-image: url(../images/white-close-icon.svg);
   }
 
   .modal__image {
