@@ -1,103 +1,166 @@
-const initialCards = [
-  {
-    name: "Val Thorens"
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg"
+document.addEventListener("DOMContentLoaded", () => {
+  const initialCards = [
+    {
+      name: "Golden Gate Bridge",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+    },
+    {
+      name: "Val Thorens",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+    },
+    {
+      name: "Restaurant terrace",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+    },
+    {
+      name: "An outdoor cafe",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+    },
+    {
+      name: "A very long bridge, over the forest and through the trees",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+    },
+    {
+      name: "Tunnel with morning light",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+    },
+    {
+      name: "Mountain house",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+    },
+  ];
+
+  const previewModal = document.querySelector("#preview-modal");
+  const previewCloseBtn = previewModal.querySelector(
+    ".modal__close-btn_type_preview"
+  );
+
+  const editProfileBtn = document.querySelector(".profile__edit-btn");
+  const editProfileModal = document.querySelector("#edit-profile-modal");
+  const editProfileCloseBtn =
+    editProfileModal.querySelector(".modal__close-btn");
+  const editProfileForm = editProfileModal.querySelector(".modal__form");
+  const editProfileNameInput = editProfileModal.querySelector(
+    "#profile-name-input"
+  );
+  const editProfileDescriptionInput = editProfileModal.querySelector(
+    "#profile-description-input"
+  );
+
+  const newPostBtn = document.querySelector(".profile__add-btn");
+  const newPostModal = document.querySelector("#new-post-modal");
+  const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
+
+  const profileNameEl = document.querySelector(".profile__name");
+  const profileDescriptionEl = document.querySelector(".profile__description");
+
+  const previewImageEl = previewModal.querySelector(".modal__image");
+  const previewCaptionEl = previewModal.querySelector(".modal__caption");
+
+  const cardTemplate = document
+    .querySelector("#card-template")
+    .content.querySelector(".card");
+  const cardsList = document.querySelector(".cards__list");
+
+  function getCardElement(data) {
+    const cardElement = cardTemplate.cloneNode(true);
+    const cardTitleEl = cardElement.querySelector(".card__title");
+    const cardImageEl = cardElement.querySelector(".card__image");
+
+    cardImageEl.src = data.link;
+    cardImageEl.alt = data.name;
+    cardTitleEl.textContent = data.name;
+
+    cardImageEl.addEventListener("click", () => {
+      previewImageEl.src = data.link;
+      previewImageEl.alt = data.name;
+      previewCaptionEl.textContent = data.name;
+      openModal(previewModal);
+    });
+
+    const cardLikeBtn = cardElement.querySelector(".card__like-button");
+    cardLikeBtn.addEventListener("click", () => {
+      cardLikeBtn.classList.toggle("card__like-button_active");
+    });
+
+    const cardDeleteBtn = cardElement.querySelector(".card__delete-button");
+    cardDeleteBtn.addEventListener("click", () => {
+      cardElement.remove();
+    });
+
+    return cardElement;
   }
-  {
-    name: "Restaurant terrace"
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg"
+
+  function openModal(modal) {
+    modal.classList.add("modal_is-opened");
   }
-  {
-    name: "An outdoor cafe"
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg"
+
+  function closeModal(modal) {
+    modal.classList.remove("modal_is-opened");
   }
-  {
-    name: "A very long bridge, over the forest and through the trees"
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg"
+
+  editProfileBtn.addEventListener("click", function () {
+    editProfileNameInput.value = profileNameEl.textContent;
+    editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+    openModal(editProfileModal);
+  });
+
+  editProfileCloseBtn.addEventListener("click", function () {
+    closeModal(editProfileModal);
+  });
+
+  newPostBtn.addEventListener("click", function () {
+    openModal(newPostModal);
+  });
+
+  newPostCloseBtn.addEventListener("click", function () {
+    closeModal(newPostModal);
+  });
+
+  previewCloseBtn.addEventListener("click", function () {
+    closeModal(previewModal);
+  });
+
+  // Set a click listener on the new modal’s close button
+  const newModalCloseBtn = document.querySelector(
+    "#new-modal .modal__close-btn"
+  );
+  newModalCloseBtn.addEventListener("click", function () {
+    const newModal = document.querySelector("#new-modal");
+    newModal.classList.remove("modal_is-opened");
+  });
+
+  function handleEditProfileSubmit(evt) {
+    evt.preventDefault();
+    profileNameEl.textContent = editProfileNameInput.value;
+    profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+    closeModal(editProfileModal);
   }
-  {
-    name: "Tunnel with morning light"
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg"
 
+  editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+
+  const newPostForm = newPostModal.querySelector(".modal__form");
+  const cardImageInput = newPostModal.querySelector("#card-image-input");
+  const cardCaptionInput = newPostModal.querySelector(
+    "#caption-description-input"
+  );
+
+  function handleAddCardSubmit(evt) {
+    evt.preventDefault();
+    const inputValues = {
+      name: cardCaptionInput.value,
+      link: cardImageInput.value,
+    };
+
+    const cardElement = getCardElement(inputValues);
+    cardsList.prepend(cardElement);
+    closeModal(newPostModal);
+    newPostForm.reset();
   }
-  {
-    name: "Mountain house"
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg"
-  }
-];
+  newPostForm.addEventListener("submit", handleAddCardSubmit);
 
-const editProfileBtn = document.querySelector(".profile__edit-btn");
-const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
-const editProfileForm = editProfileModal.querySelector(".modal__form");
-const editProfileNameInput = editProfileModal.querySelector(
-  "#profile-name-input"
-);
-const editProfileDescriptionInput = editProfileModal.querySelector(
-  "#profile-description-input"
-);
-
-const newPostBtn = document.querySelector(".profile__add-btn");
-const newPostModal = document.querySelector("#new-post-modal");
-const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
-
-const profileNameEl = document.querySelector(".profile__name");
-const profileDescriptionEl = document.querySelector(".profile__description");
-
-function openModal(modal) {
-  modal.classList.add("modal_is-opened");
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal_is-opened");
-}
-
-editProfileBtn.addEventListener("click", function () {
-  editProfileNameInput.value = profileNameEl.textContent;
-  editProfileDescriptionInput.value = profileDescriptionEl.textContent;
-  openModal(editProfileModal);
-});
-
-editProfileCloseBtn.addEventListener("click", function () {
-  closeModal(editProfileModal);
-});
-function openModal(modal) {
-  modal.classList.add("modal_is-opened");
-}
-newPostBtn.addEventListener("click", function () {
-  openModal(newPostModal);
-});
-
-newPostCloseBtn.addEventListener("click", function () {
-  closeModal(newPostModal);
-});
-
-
-function handleEditProfileSubmit(evt) {
-  evt.preventDefault();
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  closeModal(editProfileModal);
-}
-
-editProfileForm.addEventListener("submit", handleEditProfileSubmit);
-
-const newPostForm = newPostModal.querySelector(".modal__form");
-const cardImageInput = newPostModal.querySelector("#card-image-input");
-const cardCaptionInput = newPostModal.querySelector(
-  "#caption-description-input"
-);
-function handleAddCardSubmit(evt) {
-  evt.preventDefault();
-  const imageUrl = cardImageInput.value;
-  const caption = cardCaptionInput.value;
-  createCard(imageUrl, caption);
-  closeModal(newPostModal);
-  newPostForm.reset();
-}
-newPostForm.addEventListener("submit", handleAddCardSubmit);
-
-initialCards.forEach(function (item) {
-  console.log(item.name);
-  console.log(item.link);
+  initialCards.forEach(function (item) {
+    const cardElement = getCardElement(item);
+    cardsList.append(cardElement);
+  });
 });
