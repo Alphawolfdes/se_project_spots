@@ -125,10 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const newModalCloseBtn = document.querySelector(
     "#new-modal .modal__close-btn"
   );
-  newModalCloseBtn.addEventListener("click", function () {
-    const newModal = document.querySelector("#new-modal");
-    newModal.classList.remove("modal_is-opened");
-  });
 
   function handleEditProfileSubmit(evt) {
     evt.preventDefault();

@@ -41,8 +41,8 @@
 /* Adjusted positioning for better alignment */
 .modal__close-btn {
   position: absolute;
-  top: 16px; /* Adjusted for better alignment */
-  right: 16px; /* Adjusted for better alignment */
+  top: 32px; /* Adjusted for better alignment */
+  right: 32px; /* Adjusted for better alignment */
   width: 40px;
   height: 40px;
   background-image: url(../images/CloseIcon.png);
@@ -126,7 +126,7 @@
 }
 
 .modal__image {
-  max-width: 80vw;
+  max-width: 90vw;
   max-height: 80vh;
   width: 100%;
   object-fit: contain;
@@ -148,7 +148,7 @@
   display: inline-block;
 }
 @media screen and (max-width: 627px) {
-  .modal__close_type_preview {
+  .modal__close-btn_type_preview {
     top: -36px;
     right: 0;
     background-image: url(../images/white-close-icon.svg);
@@ -162,8 +162,8 @@
   }
 
   .modal__container {
-    padding: 12px;
-    width: 280px; /* Fixed width for 320px viewport */
+    padding: 25px 22px;
+    width: 282px; /* Fixed width for 320px viewport */
     height: 336px;
     top: 136px;
     gap: 24px;
@@ -181,7 +181,7 @@
   }
 
   .modal__label {
-    margin-bottom: 13px;
+    margin-bottom: 24px;
     font-size: 14px;
     line-height: 20px;
   }
@@ -189,7 +189,7 @@
   .modal__title {
     font-size: 20px;
     line-height: 24px;
-    margin-bottom: 75px;
+    margin-bottom: 24px;
   }
 
   .modal__close-btn {
@@ -219,7 +219,7 @@
   .modal__caption {
     font-size: 12px;
   }
-  .modal__close_type_preview {
+  .modal__close-btn_type_preview {
     top: -36px;
     right: 0;
     background-color: transparent;
