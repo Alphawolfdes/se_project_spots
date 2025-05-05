@@ -122,9 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Set a click listener on the new modal’s close button
-  const newModalCloseBtn = document.querySelector(
-    "#new-modal .modal__close-btn"
-  );
 
   function handleEditProfileSubmit(evt) {
     evt.preventDefault();
