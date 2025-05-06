@@ -146,6 +146,8 @@
 }
 
 .modal__caption {
+  margin: 0;
+  margin-top: 8px;
   color: white;
   background-color: black;
   font-size: 20px;
@@ -226,8 +228,11 @@
     background-size: contain;
   }
   .modal__close-btn_type_preview {
-    top: -18px;
-    right: 10px;
+    width: 40px;
+    height: 40px;
+    top: -18px; /* Position it above the modal */
+    right: 8px; /* Align to the right edge */
+    /* Align to the right edge */
   }
 
   .modal__submit-btn {
