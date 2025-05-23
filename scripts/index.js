@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function getCardElement(data) {
     const cardElement = cardTemplate.cloneNode(true);
     const cardTitleEl = cardElement.querySelector(".card__title");
+    const cardSubmitButton = cardElement.querySelector(".modal__button");
     const cardImageEl = cardElement.querySelector(".card__image");
 
     cardImageEl.src = data.link;
@@ -102,6 +103,11 @@ document.addEventListener("DOMContentLoaded", () => {
   editProfileBtn.addEventListener("click", function () {
     editProfileNameInput.value = profileNameEl.textContent;
     editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+    resetValidation(
+      editProfileForm,
+      [editProfileNameInput, editProfileDescriptionInput],
+      settings
+    );
     openModal(editProfileModal);
   });
 
@@ -149,6 +155,11 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsList.prepend(cardElement);
     closeModal(newPostModal);
     newPostForm.reset();
+    toggleButtonState(
+      [cardImageInput, cardCaptionInput],
+      cardSubmitButton,
+      settings
+    );
   }
   newPostForm.addEventListener("submit", handleAddCardSubmit);
 
