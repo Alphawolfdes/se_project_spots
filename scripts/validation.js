@@ -1,8 +1,8 @@
-const settings = {
+export const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
+  submitButtonSelector: ".modal__submit-btn",
+  inactiveButtonClass: "modal__submit-btn_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
@@ -51,13 +51,13 @@ const toggleButtonState = (inputList, buttonElement, settings) => {
     buttonElement.disabled = false;
   }
 };
-const resetValidation = (formElement, inputList, settings) => {
+export const resetValidation = (formElement, inputList, settings) => {
   const buttonElement = formElement.querySelector(
     settings.submitButtonSelector
   );
 
   inputList.forEach((inputElement) => {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, settings);
   });
 
   toggleButtonState(inputList, buttonElement, settings);

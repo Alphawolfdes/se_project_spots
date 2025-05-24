@@ -1,3 +1,4 @@
+import { settings, resetValidation } from "./validation.js";
 document.addEventListener("DOMContentLoaded", () => {
   const initialCards = [
     {
@@ -94,12 +95,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function openModal(modal) {
     modal.classList.add("modal_is-opened");
+    document.addEventListener("keydown", handleEscClose);
   }
 
   function closeModal(modal) {
     modal.classList.remove("modal_is-opened");
+    document.removeEventListener("keydown", handleEscClose);
   }
 
+  function handleEscClose(evt) {
+    if (evt.key === "Escape") {
+      const openedModal = document.querySelector(".modal_is-opened");
+      if (openedModal) {
+        closeModal(openedModal);
+      }
+    }
+  }
   editProfileBtn.addEventListener("click", function () {
     editProfileNameInput.value = profileNameEl.textContent;
     editProfileDescriptionInput.value = profileDescriptionEl.textContent;
@@ -127,7 +138,14 @@ document.addEventListener("DOMContentLoaded", () => {
     closeModal(previewModal);
   });
 
-  // Set a click listener on the new modal’s close button
+  const modals = document.querySelectorAll(".modal");
+  modals.forEach((modal) => {
+    modal.addEventListener("click", (evt) => {
+      if (evt.target.classList.contains("modal")) {
+        closeModal(modal);
+      }
+    });
+  });
 
   function handleEditProfileSubmit(evt) {
     evt.preventDefault();
@@ -155,6 +173,9 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsList.prepend(cardElement);
     closeModal(newPostModal);
     newPostForm.reset();
+    const cardSubmitButton = newPostForm.querySelector(
+      settings.submitButtonSelector
+    );
     toggleButtonState(
       [cardImageInput, cardCaptionInput],
       cardSubmitButton,
