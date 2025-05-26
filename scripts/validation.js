@@ -6,6 +6,7 @@ export const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+export { toggleButtonState };
 
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
   const errorMessageID = inputElement.id + "-error";

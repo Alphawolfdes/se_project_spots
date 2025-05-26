@@ -126,7 +126,7 @@
   font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 
-.modal__button_disabled {
+.modal__submit-btn_disabled {
   background-color: #808080;
   cursor: not-allowed;
 }
