@@ -1,0 +1,40 @@
+/* Profile Avatar Styles */
+.profile__avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.profile__avatar {
+  display: block;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile__avatar-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile__avatar-container:hover .profile__avatar-btn,
+.profile__avatar-btn:focus {
+  opacity: 1;
+}
+
+.profile__pencil-icon {
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+}
