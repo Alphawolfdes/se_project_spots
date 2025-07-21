@@ -142,12 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const cardLikeBtn = cardElement.querySelector(".card__like-button");
     // Add active class if current user has liked the card
-    if (
-      data.likes &&
-      Array.isArray(data.likes) &&
-      currentUserId &&
-      data.likes.some((user) => user._id === currentUserId)
-    ) {
+    if (data.isLiked) {
       cardLikeBtn.classList.add("card__like-button_active");
     }
     cardLikeBtn.addEventListener("click", () => {
@@ -274,18 +269,24 @@ document.addEventListener("DOMContentLoaded", () => {
       link: cardImageInput.value,
     };
 
-    // If you want to use API to add card, replace below with api.addCard(inputValues)
-    // For now, just add locally
-    const cardElement = getCardElement(inputValues);
-    cardsList.prepend(cardElement);
-    closeModal(newPostModal);
-    newPostForm.reset();
-    toggleButtonState(
-      [cardImageInput, cardCaptionInput],
-      cardSubmitButton,
-      settings
-    );
-    setButtonText(cardSubmitButton, false, "Saving...", "Save");
+    // Use API to add card and render it after successful response
+    api
+      .addCard(inputValues)
+      .then((newCard) => {
+        const cardElement = getCardElement(newCard);
+        cardsList.prepend(cardElement);
+        closeModal(newPostModal);
+        newPostForm.reset();
+        toggleButtonState(
+          [cardImageInput, cardCaptionInput],
+          cardSubmitButton,
+          settings
+        );
+      })
+      .catch(console.error)
+      .finally(() => {
+        setButtonText(cardSubmitButton, false, "Saving...", "Save");
+      });
   }
   // finish the avatar submit handler
   function handleAvatarSubmit(evt) {
