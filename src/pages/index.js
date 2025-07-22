@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // delete form elements
   const deleteModal = document.querySelector("#delete-modal");
   const deleteForm = deleteModal.querySelector("#delete-form");
+  const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 
   const cardTemplate = document
     .querySelector("#card-template")
@@ -363,10 +364,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Add event listener for delete modal close button
+  deleteModalCloseBtn.addEventListener("click", () => {
+    closeModal(deleteModal);
+    selectedCard = null;
+    selectedCardId = null;
+  });
+
   deleteForm.addEventListener("submit", handleDeleteSubmit);
   editProfileForm.addEventListener("submit", handleEditProfileSubmit);
   newPostForm.addEventListener("submit", handleAddCardSubmit);
   avatarForm.addEventListener("submit", handleAvatarSubmit);
+
+  avatarModalBtn.addEventListener("click", () => {
+    resetValidation(avatarForm, [avatarInput], settings);
+    openModal(avatarModal);
+  });
 
   enableValidation(validationConfig);
 });
