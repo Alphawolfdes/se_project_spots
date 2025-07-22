@@ -6,6 +6,10 @@ export const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+
+// Export a validationConfig object if needed (can be the same as settings)
+export const validationConfig = settings;
+
 export { toggleButtonState };
 
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
@@ -80,11 +84,9 @@ const setEventListeners = (formElement, config) => {
   });
 };
 
-const enableValidation = (config) => {
+export const enableValidation = (config) => {
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((formElement) => {
     setEventListeners(formElement, config);
   });
 };
-
-enableValidation(settings);

@@ -5,12 +5,53 @@
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
+.profile__avatar-container {
+  position: relative;
+}
+
+.profile__avatar-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  visibility: hidden;
+  cursor: pointer;
+  background: rgba(33, 33, 33, 0.3); /* semi-transparent overlay */
+  border-radius: 8px;
+  transition: background 0.2s, visibility 0.2s;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.profile__avatar-btn:hover {
+  background: rgba(33, 33, 33, 0.5);
+}
+
+/* Show the button on hover of the container */
+.profile__avatar-container:hover .profile__avatar-btn,
+.profile__avatar-btn:focus {
+  visibility: visible;
+  background: rgba(33, 33, 33, 0.5);
+}
+
+.profile__avatar-btn::after {
+  content: "Edit Avatar";
+}
+
 .profile__avatar {
   object-fit: cover;
   height: 190px;
   width: 190px;
   margin-right: 20px;
   border-radius: 8px;
+  z-index: 1;
+  display: block;
+  position: relative;
+  pointer-events: none;
 }
 
 .profile__column {
@@ -91,6 +132,19 @@
     text-align: center;
     padding-top: 20px;
   }
+
+  .profile__avatar-btn {
+    visibility: visible;
+    padding-bottom: 8px;
+    background: rgba(33, 33, 33, 0.2); /* lighter overlay for mobile */
+    border-radius: 8px;
+  }
+
+  .profile__avatar-btn::after {
+    content: "";
+  }
+
+  /* Todo: finish mobile avatar button styles */
 
   .profile__avatar {
     margin-right: 0;
